@@ -1,5 +1,5 @@
 import asciidoctor from 'asciidoctor'
-import {CSSProperties, useEffect, useRef} from "react"
+import {type CSSProperties, useEffect, useRef} from "react"
 
 const asciidoc = asciidoctor()
 const defaultTitle = 'Untitled'
@@ -35,7 +35,7 @@ function AsciidocView({input, raw, style}: {
       </html>`)
     }
   }, [input, raw])
-  if (raw) return <div style={style}>{content.split('\n').flatMap((line) => [line, <br/>])}</div>
+  if (raw) return <div style={style}>{content.split('\n').flatMap((line, index) => [line, <br key={index}/>])}</div>
   return <iframe ref={iframe} style={style} title="asciidoc-view"/>
 }
 
